@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ALEVIA - Electronic Music Producer & DJ</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-black: #000000;
+            --secondary-black: #1a1a1a;
+            --dark-gray: #2c2c2c;
+            --light-gray: #f8f9fa;
+            --pure-white: #ffffff;
+            --accent-gray: #6c757d;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--pure-white);
+            color: var(--primary-black);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Custom Typography */
+        .display-font {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Navigation */
+        .navbar-custom {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            padding: 1rem 0;
+        }
+
+        .navbar-custom.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 2px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .navbar-brand {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-black) !important;
+            letter-spacing: 2px;
+        }
+
+        .navbar-nav .nav-link {
+            color: var(--primary-black) !important;
+            font-weight: 500;
+            margin: 0 0.5rem;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-nav .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 50%;
+            background: var(--primary-black);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .navbar-nav .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--pure-white) 0%, var(--light-gray) 100%);
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(circle at 20% 20%, rgba(0, 0, 0, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(0, 0, 0, 0.03) 0%, transparent 50%);
+        }
+
+        .hero-content {
+            z-index: 2;
+            position: relative;
+        }
+
+        .hero-title {
+            font-size: 5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: 3px;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: var(--accent-gray);
+            margin-bottom: 2rem;
+            font-weight: 300;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            color: var(--accent-gray);
+            margin-bottom: 3rem;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        .hero-section img {
+            width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            /* centrar horizontalmente */
+        }
+
+        .hero-section {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            /* toda la pantalla */
+            background: url("tu-animacion.gif") no-repeat center center;
+            background-size: cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-section .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            /* capa oscura encima */
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            /* asegura que quede sobre la capa oscura */
+            color: white;
+        }
+
+        /* Buttons */
+        .btn-custom {
+            background: var(--primary-black);
+            color: var(--pure-white);
+            border: 2px solid var(--primary-black);
+            padding: 0.75rem 2rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-custom::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--pure-white);
+            transition: all 0.3s ease;
+            z-index: 0;
+        }
+
+        .btn-custom:hover::before {
+            left: 0;
+        }
+
+        .btn-custom:hover {
+            color: var(--primary-black);
+            border-color: var(--primary-black);
+        }
+
+        .btn-custom span {
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn-outline-custom {
+            background: transparent;
+            color: var(--primary-black);
+            border: 2px solid var(--primary-black);
+            padding: 0.75rem 2rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-outline-custom:hover {
+            background: var(--primary-black);
+            color: var(--pure-white);
+        }
+
+        /* Sections */
+        .section-padding {
+            padding: 5rem 0;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--primary-black);
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--accent-gray);
+            margin-bottom: 3rem;
+        }
+
+        /* About Section */
+        .about-section {
+            background: var(--light-gray);
+        }
+
+        .profile-image {
+            width: 100%;
+            height: auto;
+            /* ajusta la altura al contenido */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .profile-image img {
+            max-width: 100%;
+            height: auto;
+            object-fit: contain;
+            /* asegura que no se recorte */
+            display: block;
+            border-radius: 10px;
+            /* opcional, esquinas suaves */
+        }
+
+        .profile-image {
+            width: 350px;
+            height: 350px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--dark-gray), var(--primary-black));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--pure-white);
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile-image::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, var(--primary-black), var(--accent-gray));
+            border-radius: 50%;
+            z-index: -1;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--accent-gray);
+        }
+
+        /* Music Section */
+        .music-card {
+            background: var(--pure-white);
+            border: none;
+            border-radius: 0;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .music-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .music-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--primary-black);
+        }
+
+        .genre-badge {
+            background: var(--primary-black);
+            color: var(--pure-white);
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        /* Events Section */
+        .events-section {
+            background: var(--light-gray);
+        }
+
+        .event-card {
+            background: var(--pure-white);
+            border: none;
+            border-radius: 0;
+            padding: 2rem;
+            height: 100%;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .event-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: var(--primary-black);
+            transition: all 0.3s ease;
+            z-index: 1;
+        }
+
+        .event-card:hover::before {
+            width: 5px;
+        }
+
+        .event-card:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .event-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .event-location {
+            color: var(--accent-gray);
+            font-weight: 500;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .event-description {
+            color: var(--accent-gray);
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Gallery Section */
+        .gallery-item {
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, var(--dark-gray), var(--primary-black));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--pure-white);
+            font-size: 1.2rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gallery-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0);
+            transition: all 0.3s ease;
+        }
+
+        .gallery-item:hover::before {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+
+        .gallery-item {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: #000;
+            /* opcional, da fondo neutro */
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            /* asegura que la imagen se vea completa */
+            display: block;
+        }
+
+
+        /* Contact Section */
+        .contact-section {
+            background: var(--primary-black);
+            color: var(--pure-white);
+        }
+
+        .contact-section .section-title {
+            color: var(--pure-white);
+        }
+
+        .contact-section .section-title::after {
+            background: var(--pure-white);
+        }
+
+        .contact-section .section-subtitle {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .social-link {
+            width: 60px;
+            height: 60px;
+            border: 2px solid var(--pure-white);
+            color: var(--pure-white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .social-link:hover {
+            background: var(--pure-white);
+            color: var(--primary-black);
+            transform: translateY(-5px);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--secondary-black);
+            color: var(--pure-white);
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 3rem;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .profile-image {
+                width: 250px;
+                height: 250px;
+            }
+        }
+
+        .bg-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-custom fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#home">ALEVIA</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">Quien Soy</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#music">Música</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#events">Eventos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#gallery">Galería</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contacto</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <video autoplay muted loop playsinline class="bg-video">
+            <source src="alesito.mp4" type="video/mp4">
+        </video>
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="hero-content text-center">
+                <h1 class="hero-title display-font">ALEVIA</h1>
+                <p class="hero-subtitle" style="color: #f8f9fa;">Electronic Music Producer & DJ</p>
+                <p class="hero-description"style="color: #f8f9fa;" >
+                    Creando experiencias únicas a través de Future House, Bass House y Progressive House desde
+                    Cochabamba, Bolivia.
+                </p>
+                <div class="d-flex gap-3 flex-wrap justify-content-center">
+                    <a href="#music" class="btn btn-custom"><span>Escucha Mi Música</span></a>
+                    <a href="#contact" class="btn btn-custom"><span>Contáctame</span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+    <!-- About Section -->
+    <section id="about" class="about-section section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mb-5">
+                    <h2 class="section-title display-font">Quien Soy</h2>
+                    <p class="section-subtitle">Conoce la historia detrás de la música</p>
+                </div>
+            </div>
+            <div class="row align-items-center fade-in">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <div class="profile-image">
+                        <img src="alevia.jpg" alt="" style="padding: 0%;">
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="about-text">
+                        <p class="mb-4">Soy <strong>ALEVIA</strong>, DJ y productor de música electrónica nacido en
+                            Cochabamba, Bolivia. Con más de 5 años de experiencia en la escena electrónica, he
+                            desarrollado mi sonido único fusionando géneros como Future House, Future Bounce, Bass House
+                            y Progressive House.</p>
+
+                        <p class="mb-4">Mi trayectoria incluye presentaciones en festivales reconocidos como Electro
+                            Fest (Santa Cruz), previa de Life in Color, FeicoMusic, y Electro Colors Fest. He sido parte
+                            de colectivos destacados en Cochabamba como Sun Stage, That Sound y Savage Station.</p>
+
+                        <p>Como productor, llevo 2 años creando tracks propios, explorando sonidos innovadores que
+                            conectan con las emociones del dancefloor. Mi pasión es crear experiencias musicales únicas
+                            que trasciendan las barreras del género.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Music Section -->
+    <section id="music" class="section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mb-5">
+                    <h2 class="section-title display-font">Mi Música</h2>
+                    <p class="section-subtitle">Explora mis géneros y producciones</p>
+                </div>
+            </div>
+            <div class="row fade-in">
+                <div class="col-lg-4 mb-4">
+                    <div class="card music-card h-100">
+                        <div class="card-body text-center p-4">
+                            <span class="genre-badge mb-3 d-inline-block">Future House</span>
+                            <h3 class="card-title h4 mb-3">Latest Tracks</h3>
+                            <p class="card-text">Explora mis últimas producciones en Future House, con sonidos frescos y
+                                energía única para el dancefloor.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <div class="card music-card h-100">
+                        <div class="card-body text-center p-4">
+                            <span class="genre-badge mb-3 d-inline-block">Bass House</span>
+                            <h3 class="card-title h4 mb-3">Bass House Mix</h3>
+                            <p class="card-text">Sumérgete en mi mix de Bass House disponible en MixCloud, lleno de
+                                drops potentes y ritmos contagiosos.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <div class="card music-card h-100">
+                        <div class="card-body text-center p-4">
+                            <span class="genre-badge mb-3 d-inline-block">Progressive House</span>
+                            <h3 class="card-title h4 mb-3">Progressive Sets</h3>
+                            <p class="card-text">Viaja a través de paisajes sonoros progresivos que te llevarán en un
+                                journey musical inolvidable.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Events Section -->
+    <section id="events" class="events-section section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mb-5">
+                    <h2 class="section-title display-font">Eventos Destacados</h2>
+                    <p class="section-subtitle">Mi trayectoria en los mejores escenarios</p>
+                </div>
+            </div>
+            <div class="row fade-in">
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="event-card">
+                        <h3 class="event-title">Electro Fest</h3>
+                        <p class="event-location"><i class="fas fa-map-marker-alt me-2"></i>Santa Cruz, Bolivia</p>
+                        <p class="event-description">Festival masivo de música electrónica</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="event-card">
+                        <h3 class="event-title">Life in Color - Previa</h3>
+                        <p class="event-location"><i class="fas fa-map-marker-alt me-2"></i>Día del Peatón</p>
+                        <p class="event-description">Evento especial pre-festival</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="event-card">
+                        <h3 class="event-title">FeicoMusic</h3>
+                        <p class="event-location"><i class="fas fa-map-marker-alt me-2"></i>Cochabamba, Bolivia</p>
+                        <p class="event-description">Festival de música independiente</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="event-card">
+                        <h3 class="event-title">Electro Colors Fest</h3>
+                        <p class="event-location"><i class="fas fa-map-marker-alt me-2"></i>Bolivia</p>
+                        <p class="event-description">Festival de colores y música electrónica</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="event-card">
+                        <h3 class="event-title">Sun Stage</h3>
+                        <p class="event-location"><i class="fas fa-users me-2"></i>Colectivo - Cochabamba</p>
+                        <p class="event-description">Participación en colectivo reconocido</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="event-card">
+                        <h3 class="event-title">That Sound</h3>
+                        <p class="event-location"><i class="fas fa-users me-2"></i>Colectivo - Cochabamba</p>
+                        <p class="event-description">Eventos underground y comerciales</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="event-card">
+                        <h3 class="event-title">Carnival Colors</h3>
+                        <p class="event-location"><i class="fas fa-users me-2"></i>Colectivo - Cochabamba</p>
+                        <p class="event-description">Eventos underground y comerciales</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="event-card">
+                        <h3 class="event-title">Boltronica</h3>
+                        <p class="event-location"><i class="fas fa-users me-2"></i>Bolivia</p>
+                        <p class="event-description">Presentaciones en radio</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mb-5">
+                    <h2 class="section-title display-font">Galería</h2>
+                    <p class="section-subtitle">Momentos capturados en el escenario</p>
+                </div>
+            </div>
+            <div class="row fade-in">
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="gallery-item"><img src="eve13.jpg" alt=""></div>
+
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="gallery-item"><img src="eve2.jpg" alt=""></div>
+
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="gallery-item"><img src="eve6.jpg" alt=""></div>
+
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="gallery-item"><img src="eve8.jpg" alt=""></div>
+
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="gallery-item"><img src="eve5.jpg" alt=""></div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="gallery-item"><img src="eve12.jpg" alt=""></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mb-5">
+                    <h2 class="section-title display-font">Contacto</h2>
+                    <p class="section-subtitle">¿Listo para llevar tu evento al siguiente nivel?</p>
+                </div>
+            </div>
+            <div class="row justify-content-center fade-in">
+                <div class="col-lg-8 text-center">
+                    <p class="mb-4 fs-5">Contáctame para bookings, colaboraciones y más información.</p>
+
+                    <div class="d-flex justify-content-center gap-3 mb-4 flex-wrap">
+                        <a href="https://www.facebook.com/aleviamusic/" target="_blank" class="social-link">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://www.mixcloud.com/aleviamusic/" target="_blank" class="social-link">
+                            <i class="fas fa-music"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-soundcloud"></i>
+                        </a>
+                        <a href="mailto:alevia030@gmail.com" class="social-link">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                    </div>
+
+                    <a href="mailto:alevia030@gmail.com" class="btn btn-custom">
+                        <span>Enviar Email</span>
+                    </a>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <p class="mb-2">&copy;2025 ALEVIA. Todos los derechos reservados.</p>
+                    <p class="mb-0">Music | Bolivia</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function () {
+            const navbar = document.querySelector('.navbar-custom');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offsetTop = target.offsetTop - 80;
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function (entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in elements
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Mobile navbar collapse on link click
+        document.querySelectorAll('.navbar-nav .nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                const navbarToggler = document.querySelector('.navbar-toggler');
+                const navbarCollapse = document.querySelector('.navbar-collapse');
+
+                if (navbarCollapse.classList.contains('show')) {
+                    navbarToggler.click();
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
